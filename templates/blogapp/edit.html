@@ -1,0 +1,16 @@
+{% extends 'blogapp/base.html' %}
+{% block title %}
+    Edit post
+{% endblock %}
+{% block content %}
+
+    <h1 class="form-group d-flex justify-content-center align-items-center container">
+        Update Post . . . !</h1>
+    <div class="form-group d-flex justify-content-center align-items-center container">
+        <form method="POST" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Update</button>
+        </form>
+    </div>
+{% endblock %}

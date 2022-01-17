@@ -1,0 +1,17 @@
+{% extends 'blogapp/base.html' %}
+{% block title %}
+    Delete post
+{% endblock %}
+{% block content %}
+
+    <h1 class="form-group d-flex justify-content-center align-items-center container">
+        Delete Post . . . !</h1>
+    <h3>Delete: {{ post.title }}</h3>
+    <div class="form-group d-flex justify-content-center align-items-center container">
+        <form method="POST">
+            {% csrf_token %}
+            <strong>Are you sure you want to delete?!!</strong>
+            <button class="btn btn-secondary">Delete Post</button>
+        </form>
+    </div>
+{% endblock %}

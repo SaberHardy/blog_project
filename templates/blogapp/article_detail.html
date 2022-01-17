@@ -1,0 +1,23 @@
+{% extends 'blogapp/base.html' %}
+{% block title %}
+    {{ post.title_tag }}
+{% endblock %}
+{% block content %}
+
+    <h2>{{ post.title|capfirst }}</h2>
+
+    <p>By: {{ post.author.first_name }} {{ post.author.last_name }}
+
+        <small>
+            <a href="{% url 'update-article' post.id %}">
+                Edit</a>
+        </small>
+        <br/>
+        On: {{ post.post_date }}
+
+    </p>
+    <hr>
+    <p>{{ post.body }}</p>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Go back</a>
+
+{% endblock %}
