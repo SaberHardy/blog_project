@@ -60,6 +60,10 @@ class AddCategoryView(CreateView):
     fields = '__all__'
 
 
-def category_view(request, cats):
-    category_posts = Post.objects.filter(category=cats)
-    return render(request, 'blogapp/categories.html', context={'cats': cats, 'category_posts': category_posts})
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats.replace("-", ' '))
+
+    return render(request,
+                  'blogapp/categories.html',
+                  context={'cats': cats.title().replace("-", ' '),
+                           'category_posts': category_posts})

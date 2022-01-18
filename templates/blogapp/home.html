@@ -9,7 +9,9 @@
             <a href="{% url 'article-detail' post.pk %}">
                 {{ post.title|capfirst }}
             </a>
-            <a href="{% url 'category' post.category %}">- {{ post.category }}</a>
+            <a href="{% url 'category' post.category|slugify %}">
+                - {{ post.category }}</a>
+
             {{ post.author.first_name }}
             {{ post.author.last_name }}
             {% if user.is_authenticated %}

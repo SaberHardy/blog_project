@@ -1,6 +1,8 @@
 {% extends 'blogapp/base.html' %}
 
 {% block content %}
+    <h2>{{ cats }} Category</h2>
+
     {% if category_posts %}
 <ul>
     {% for post in category_posts %}
@@ -14,14 +16,15 @@
                 Edit
             </a> or <a href="{% url 'delete-post' post.pk %}">
                 Delete
-            </a>{% endif %}
+            </a>
+            {% endif %}
             <br/>
             {{ post.body|capfirst|slice:":100"|safe }}
         </li>
     {% endfor %}
 </ul>
     {% else %}
-        No Categories
+        <h2>Sorry we don't exist</h2>
     {% endif %}
 
 
