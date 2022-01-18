@@ -18,7 +18,7 @@
 
     </p>
     <hr>
-    <p>{{ post.body }}</p>
+    <p>{{ post.body|safe }}</p>
     <a href="{% url 'home' %}" class="btn btn-secondary">Go back</a>
 {% else %}
         <P>You are not allowed to see posts, please, login!</P>

@@ -6,7 +6,7 @@
 <ul>
     {% for post in object_list %}
         <li>
-            {{ post.id }} * <a href="{% url 'article-detail' post.pk %}">
+            {{ post.id }} <a href="{% url 'article-detail' post.pk %}">
                 {{ post.title|capfirst }}
             </a> - {{ post.author.first_name }}
             {{ post.author.last_name }}
@@ -17,7 +17,7 @@
                 Delete
             </a>{% endif %}
             <br/>
-            {{ post.body|capfirst|slice:":100" }}
+            {{ post.body|capfirst|slice:":100"|safe }}
         </li>
     {% endfor %}
 </ul>
