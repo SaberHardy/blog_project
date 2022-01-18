@@ -4,6 +4,7 @@
 {% endblock %}
 {% block content %}
 
+    {% if user.is_authenticated %}
     <h1 class="form-group d-flex justify-content-center align-items-center container">Add Post . . . !</h1>
     <div class="form-group d-flex justify-content-center align-items-center container">
         <form method="post">
@@ -12,7 +13,9 @@
             <button type="submit" class="btn btn-success col-md-12 text-center submit-btn">
                 Submit
             </button>
-
         </form>
     </div>
+    {% else %}
+        <P>You are not allowed to create posts, please, login!</P>
+    {% endif %}
 {% endblock %}

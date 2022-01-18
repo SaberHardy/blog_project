@@ -3,7 +3,7 @@
     Edit post
 {% endblock %}
 {% block content %}
-
+{% if user.is_authenticated %}
     <h1 class="form-group d-flex justify-content-center align-items-center container">
         Update Post . . . !</h1>
     <div class="form-group d-flex justify-content-center align-items-center container">
@@ -13,4 +13,7 @@
             <button class="btn btn-secondary">Update</button>
         </form>
     </div>
+    {% else %}
+    <p>You are not allowed to update posts, please login.!</p>
+    {% endif %}
 {% endblock %}
