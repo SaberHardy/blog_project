@@ -3,26 +3,30 @@
     {{ post.title_tag }}
 {% endblock %}
 {% block content %}
-
-        {% if user.is_authenticated %}
+    Current user: {{ user.id }}
+    Post author: {{ post.author.id }}
 
     <h2>{{ post.title|capfirst }}</h2>
+    <small>By: {{ post.author.first_name }} {{ post.author.last_name }}
 
-    <p>By: {{ post.author.first_name }} {{ post.author.last_name }}
-
-        <small>
-            <a href="{% url 'update-article' post.id %}">
-                Edit
-            </a>
-        </small>
-        <br/>
-        On: {{ post.post_date }}
-
-    </p>
-    <hr>
-    <p>{{ post.body|safe }}</p>
-    <a href="{% url 'home' %}" class="btn btn-secondary">Go back</a>
-{% else %}
-        <P>You are not allowed to see posts, please, login!</P>
-    {% endif %}
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <small>
+                    <a href="{% url 'update-article' post.id %}">
+                        Edit
+                    </a> or
+                    <a href="{% url 'delete-post' post.id %}">
+                        Delete
+                    </a>
+                </small>
+                <br/>
+                On: {{ post.post_date }}
+                </small>
+                <hr>
+                <p>{{ post.body|safe }}</p>
+                <a href="{% url 'home' %}" class="btn btn-secondary">Go back</a>
+            {% else %}
+                <P>You are not allowed to see posts, please, login!</P>
+            {% endif %}
+        {% endif %}
 {% endblock %}

@@ -15,11 +15,13 @@
             {{ post.author.first_name }}
             {{ post.author.last_name }}
             {% if user.is_authenticated %}
+                {% if user.id == post.author.id %}
             -<a href="{% url 'update-article' post.pk %}">
                 Edit
             </a> or <a href="{% url 'delete-post' post.pk %}">
                 Delete
             </a>{% endif %}
+        {% endif %}
             <br/>
             {{ post.body|capfirst|slice:":100"|safe }}
         </li>

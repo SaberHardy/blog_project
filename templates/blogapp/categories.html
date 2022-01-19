@@ -24,7 +24,8 @@
     {% endfor %}
 </ul>
     {% else %}
-        <h2>Sorry we don't exist</h2>
+        <h>Sorry we don't exist</h></br>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Go back</a>
     {% endif %}
 
 
