@@ -34,8 +34,14 @@ class ArticleDetailView(DetailView):
         context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
 
         stuff = get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes = stuff.total_likes()
+
+        liked = False
+        if stuff.likes.filter(id=self.request.user.id).exists():
+            liked = True
         context['cat_menu'] = cat_menu
-        context['total_likes'] = stuff.total_likes()
+        context['total_likes'] = total_likes
+        context['liked'] = liked
         return context
 
 
@@ -91,7 +97,17 @@ def category_list_view(request):
                   context={'category_list_posts': category_list_posts})
 
 
-def like_post(request, pk):
-    post_liked = get_object_or_404(Post, id=request.POST.get('post_id'))  # this post_id is the name of post was liked
-    post_liked.likes.add(request.user)
+def like_unlike_post(request, pk):
+    # this post_id is the name of post was liked
+    id_liked = request.POST.get('post_id')
+    post_liked = get_object_or_404(Post, id=id_liked)
+    liked = False
+    user_id = request.user.id
+    if post_liked.likes.filter(id=user_id).exists():
+        post_liked.likes.remove(request.user)
+        liked = False
+    else:
+        post_liked.likes.add(request.user)
+        liked = True
+
     return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))

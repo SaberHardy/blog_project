@@ -29,14 +29,27 @@
                 <br/>
                 <hr>
                 <form action="{% url 'like_post' post.id %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" name="post_id" value="{{ post.id }}"
-                        class="btn btn-primary">Like</button>
-                - {{ total_likes }}
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                        {% if not liked %}
+                            <button type="submit" name="post_id" value="{{ post.id }}"
+                                    class="btn btn-primary">Like
+                            </button>
+                        {% else %}
+                            <button type="submit" name="post_id" value="{{ post.id }}"
+                                    class="btn btn-danger">Unlike
+                            </button>
+                        {% endif %}
+                    {% else %}
+                        <small>Please, login to like the post!</small>
+                    {% endif %}
+
+                    Total likes: {{ total_likes }}
 
                 </form>
             {% else %}
-                <P>You are not allowed to see posts, please, login!</P>
+                You are not allowed to see posts, please, login!
+                <a href="{% url 'login' %}">Login</a>
             {% endif %}
         {% endif %}
 {% endblock %}
