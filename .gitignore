@@ -3,3 +3,4 @@ venv/
 .idea/
 token.txt
 .gitignore
+**/*.pyc
