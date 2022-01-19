@@ -25,6 +25,16 @@
                 <hr>
                 <p>{{ post.body|safe }}</p>
                 <a href="{% url 'home' %}" class="btn btn-secondary">Go back</a>
+                <br/>
+                <br/>
+                <hr>
+                <form action="{% url 'like_post' post.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="post_id" value="{{ post.id }}"
+                        class="btn btn-primary">Like</button>
+                - {{ total_likes }}
+
+                </form>
             {% else %}
                 <P>You are not allowed to see posts, please, login!</P>
             {% endif %}
