@@ -23,7 +23,8 @@
             </a>{% endif %}
         {% endif %}
             <br/>
-            {{ post.body|capfirst|slice:":100"|safe }}
+        {{ post.snippet }}
+{#            {{ post.body|capfirst|slice:":100"|safe }}#}
         </li>
     {% endfor %}
 </ul>
