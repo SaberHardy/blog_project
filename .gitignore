@@ -4,3 +4,4 @@ venv/
 token.txt
 .gitignore
 **.pyc
+media/

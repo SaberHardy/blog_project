@@ -23,6 +23,9 @@
                 On: {{ post.post_date }}
                 </small>
                 <hr>
+                {% if post.header_image %}
+                    <img src="{{ post.header_image.url }}"><br/>
+                {% endif %}
                 <p>{{ post.body|safe }}</p>
                 <a href="{% url 'home' %}" class="btn btn-secondary">Go back</a>
                 <br/>

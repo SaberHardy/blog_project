@@ -28,6 +28,7 @@ class Post(models.Model):
     category = models.CharField(max_length=255, default="Uncategorized")
     snippet = models.CharField(max_length=255)
     likes = models.ManyToManyField(User, related_name='blog_posts')
+    header_image = models.ImageField(null=True, blank=True, upload_to='images/')
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)

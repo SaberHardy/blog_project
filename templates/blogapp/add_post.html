@@ -7,7 +7,7 @@
     {% if user.is_authenticated %}
         <h1 class="form-group d-flex justify-content-center align-items-center container">Add Post . . . !</h1>
         <div class="form-group d-flex justify-content-center align-items-center container">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.media }}
                 {{ form.as_p }}
