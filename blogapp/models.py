@@ -39,3 +39,12 @@ class Post(models.Model):
 
     def total_likes(self):
         return self.likes.count()
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    bio = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
+
