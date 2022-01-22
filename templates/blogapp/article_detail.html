@@ -1,4 +1,5 @@
 {% extends 'blogapp/base.html' %}
+{% load static %}
 {% block title %}
     {{ post.title_tag }}
 {% endblock %}
@@ -26,7 +27,11 @@
                 {% if post.header_image %}
                     <img src="{{ post.header_image.url }}"><br/>
                 {% endif %}
-                <p>{{ post.body|safe }}</p>
+
+                {% if post.body %}
+                    <p>{{ post.body|safe }}</p>
+                {% endif %}
+
                 <a href="{% url 'home' %}" class="btn btn-secondary">Go back</a>
                 <br/>
                 <br/>
@@ -56,8 +61,17 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-2">
-                            <img src="{{ post.author.profile.profile_pic.url }}"
-                                 class="img-fluid rounded-start" style="width: 400px; height: 400px">
+                            {% if post.author.profile.profile_pic %}
+
+                                <img src="{{ post.author.profile.profile_pic.url }}"
+                                     class="img-fluid"
+                                     style="width: 400px; height: 400px">
+                            {% else %}
+                                <img src="{% static 'images/default.png' %}"
+                                class="img-fluid"
+                                     style="width: 400px; height: 400px"><br/>
+
+                            {% endif %}
                         </div>
                         <div class="col-md-10">
                             <div class="card-body">
@@ -69,15 +83,15 @@
                                     {% endif %}
                                     {% if post.author.profile.facebook_url %}
                                         |<a href=" {{ post.author.profile.facebook_url }} " target="_blank">
-                                            Facebook</a>
+                                        Facebook</a>
                                     {% endif %}
                                     {% if post.author.profile.instagram_url %}
                                         |<a href=" {{ post.author.profile.instagram_url }} " target="_blank">
-                                            Instagram</a>
+                                        Instagram</a>
                                     {% endif %}
                                     {% if post.author.profile.pinterest_url %}
                                         |<a href=" {{ post.author.profile.pinterest_url }} " target="_blank">
-                                            Pinterest</a>
+                                        Pinterest</a>
                                     {% endif %}
 
                                 </p>
