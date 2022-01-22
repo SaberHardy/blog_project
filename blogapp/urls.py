@@ -8,7 +8,7 @@ urlpatterns = [
     path('article/update/<int:pk>/', UpdatePostView.as_view(), name="update-article"),
     path('delete/<int:pk>/remove', DeletePostView.as_view(), name="delete-post"),
     path('add_category/', AddCategoryView.as_view(), name="add-category"),
-    path('category/<str:cats>/', CategoryView, name="category"),
+    path('category/<str:cats>/', category_view, name="category"),
     path('category_list_view/', category_list_view, name="category_list_view"),
     path('like/<int:pk>/', like_unlike_post, name="like_post"),
 

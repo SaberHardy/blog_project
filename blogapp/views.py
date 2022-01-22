@@ -81,7 +81,7 @@ class AddCategoryView(CreateView):
     fields = '__all__'
 
 
-def CategoryView(request, cats):
+def category_view(request, cats):
     category_posts = Post.objects.filter(category=cats.replace("-", ' '))
 
     return render(request,

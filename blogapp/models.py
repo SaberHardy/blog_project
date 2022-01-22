@@ -45,6 +45,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     bio = models.TextField()
 
+    profile_pic = models.ImageField(null=True, blank=True, upload_to='images/profile')
+    facebook_url = models.CharField(max_length=255, null=True, blank=True)
+    website_url = models.CharField(max_length=255, null=True, blank=True)
+    instagram_url = models.CharField(max_length=255, null=True, blank=True)
+    pinterest_url = models.CharField(max_length=255, null=True, blank=True)
+
     def __str__(self):
         return str(self.user)
-
