@@ -1,0 +1,28 @@
+{% extends 'blogapp/base.html' %}
+{% block title %}
+    Edit Profile
+{% endblock %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        {% if user.id == profile.user.id %}
+            <h1 class="form-group d-flex justify-content-center align-items-center container">Edit profile</h1>
+            <div class="form-group d-flex justify-content-center align-items-center container">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h1>this is for first and last name</h1>
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success col-md-12 text-center submit-btn">
+                        Update page
+                    </button>
+                </form>
+            </div>
+
+        {% else %}
+            <p>You are not the correct user to edit this profile</p>
+        {% endif %}
+    {% else %}
+        <P>You are not allowed to create posts, please, login!</P>
+
+    {% endif %}
+{% endblock %}
