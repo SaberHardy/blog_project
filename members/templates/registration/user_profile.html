@@ -1,0 +1,54 @@
+{% extends 'blogapp/base.html' %}
+{% load static %}
+{% block content %}
+
+    <h1>User Profile</h1>
+
+    The user of this profile is: <p style="color: blue;">{{ page_user }}</p>
+
+
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-2">
+                {% if page_user.profile_pic %}
+
+                    <img src="{{ page_user.profile_pic.url }}"
+                         class="img-fluid"
+                         style="width: 400px; height: 400px">
+                {% else %}
+                    <img src="{% static 'images/default.png' %}"
+                         class="img-fluid"
+                         style="width: 400px; height: 400px"><br/>
+
+                {% endif %}
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5 class="card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h5>
+                    <p class="small text-muted">
+
+                        {% if page_user.website_url %}
+                            <a href=" {{ page_user.website_url }} " target="_blank">
+                                Website</a>
+                        {% endif %}
+                        {% if page_user.facebook_url %}
+                            |<a href=" {{ page_user.facebook_url }} " target="_blank">
+                            Facebook</a>
+                        {% endif %}
+                        {% if page_user.instagram_url %}
+                            |<a href=" {{ page_user.instagram_url }} " target="_blank">
+                            Instagram</a>
+                        {% endif %}
+                        {% if page_user.pinterest_url %}
+                            |<a href=" {{ page_user.pinterest_url }} " target="_blank">
+                            Pinterest</a>
+                        {% endif %}
+
+                    </p>
+                    <p class="card-text">{{ page_user.bio }}</p>
+                    <p class="card-text"><small class="text-muted">{{ post.post_date }}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
