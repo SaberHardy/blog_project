@@ -1,10 +1,12 @@
 {% extends 'blogapp/base.html' %}
 {% block title %}
-    Edit profile
+    Edit Settings
 {% endblock %}
 {% block content %}
-{{ user.profile.bio }}
-    <h1 class="form-group d-flex justify-content-center align-items-center container">Edit profile!</h1>
+    <h5 class="card-title"></h5>
+    <br/>
+    {{ user.profile.bio }}
+    <h1 class="form-group d-flex justify-content-center align-items-center container">Edit Settings!==></h1>
     <div class="form-group d-flex justify-content-center align-items-center container">
         <form method="post">
             {% csrf_token %}
