@@ -11,5 +11,6 @@ urlpatterns = [
     # """My new class view""",
     path('password/', PasswordChangeView.as_view(template_name='registration/change_password.html')),
     path('password_success/', password_success, name="password_success"),
+    path('<int:pk>/profile/', ShowProfilePageView.as_view(), name="profile"),
 
 ]
