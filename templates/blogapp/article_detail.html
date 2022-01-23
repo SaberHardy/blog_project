@@ -58,6 +58,23 @@
                 <br/>
                 <br/>
 
+                <h2>Comments ...</h2>
+
+                {% if not post.comments.all %}
+                    No comments yet . . .
+                    <a href="#">Add comment</a>
+                {% else %}
+                    {% for comment in post.comments.all %}
+                        <strong>{{ comment.name }} - {{ comment.date_added }}</strong>
+                        <br/>
+                        {{ comment.body }}
+                        <br>
+                        <br>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+<hr>
+
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-2">
@@ -68,7 +85,7 @@
                                      style="width: 400px; height: 400px">
                             {% else %}
                                 <img src="{% static 'images/default.png' %}"
-                                class="img-fluid"
+                                     class="img-fluid"
                                      style="width: 400px; height: 400px"><br/>
 
                             {% endif %}
