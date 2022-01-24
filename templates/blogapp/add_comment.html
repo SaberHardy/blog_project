@@ -1,0 +1,16 @@
+{% extends 'blogapp/base.html' %}
+{% block title %}
+    Create comment
+{% endblock %}
+{% block content %}
+        <h1 class="form-group d-flex justify-content-center align-items-center container">Add comment</h1>
+        <div class="form-group d-flex justify-content-center align-items-center container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success col-md-12 text-center submit-btn">
+                    Add comment
+                </button>
+            </form>
+        </div>
+{% endblock %}
