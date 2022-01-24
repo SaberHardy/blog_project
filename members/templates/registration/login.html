@@ -8,11 +8,22 @@
     <div class="form-group d-flex justify-content-center align-items-center container">
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {#            {{ form.as_p }}#}
+            <div class="mb-3 row">
+                <div class="col-sm-16">
+                    <input type="text" class="form-control" name="username" placeholder="User name">
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-sm-16">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+            </div>
+            <small>Not registered? <a href="{% url 'register' %}">Register</a></small>
             <button type="submit" class="btn btn-success col-md-12 text-center submit-btn">
                 Login
             </button>
-
         </form>
     </div>
 {% endblock %}
