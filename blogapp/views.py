@@ -5,7 +5,7 @@ from django.views.generic import ListView, \
     DetailView, CreateView, UpdateView, DeleteView
 
 from .models import Post, Category, Comment
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 
 
 # Create your views here.
@@ -115,6 +115,12 @@ def like_unlike_post(request, pk):
 
 class AddCommentView(CreateView):
     model = Comment
-    # form_class = PostForm
+    form_class = CommentForm
     template_name = 'blogapp/add_comment.html'
-    fields = '__all__'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+    # fields = '__all__'
