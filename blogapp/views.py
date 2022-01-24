@@ -4,7 +4,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, \
     DetailView, CreateView, UpdateView, DeleteView
 
-from .models import Post, Category
+from .models import Post, Category, Comment
 from .forms import PostForm
 
 
@@ -111,3 +111,10 @@ def like_unlike_post(request, pk):
         liked = True
 
     return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    # form_class = PostForm
+    template_name = 'blogapp/add_comment.html'
+    fields = '__all__'
