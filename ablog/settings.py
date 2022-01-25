@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # new Apps
+    'rest_framework',
     'blogapp',
     'members',
     'ckeditor',
