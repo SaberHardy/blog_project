@@ -44,5 +44,5 @@ import datetime
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['title', 'title_tag', 'author', 'body', 'post_date',
+        fields = ['id', 'title', 'title_tag', 'author', 'body', 'post_date',
                   'category', 'body', 'snippet', 'header_image']

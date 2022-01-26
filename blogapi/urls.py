@@ -7,7 +7,7 @@ urlpatterns = [
     # path('api/<int:pk>/', views.BlogObjectsDetail.as_view()),
 
     path('', views.post_list, name='post_list'),
-    path('post_api/<int:pk>/', views.post_detail, name='post_api')
+    path('<int:pk>/', views.post_detail, name='post_api')
 ]
 
 urlpatterns += format_suffix_patterns(urlpatterns)

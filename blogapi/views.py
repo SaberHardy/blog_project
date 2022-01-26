@@ -9,6 +9,9 @@ from rest_framework.parsers import JSONParser
 from blogapp.models import Post
 from .serializers import PostSerializer
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+
 # from blogapp.models import Post
 # from .serializers import PostSerializer
 #
@@ -25,42 +28,44 @@ from .serializers import PostSerializer
 """This is new part using serializers views"""
 
 
-@csrf_exempt
-def post_list(request):
+# @csrf_exempt
+@api_view(['GET', 'POST'])
+def post_list(request, format=None):
     if request.method == "GET":
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
+
     elif request.method == "POST":
-        data = JSONParser().parse(request)
-        serializer = PostSerializer(data=data)
+        # data = JSONParser().parse(request)
+        serializer = PostSerializer(data=request.data)
+        # serializer = PostSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@csrf_exempt
-def post_detail(request, pk):
+# @csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def post_detail(request, pk, format=None):
     try:
-        print(f"id ====>{pk}")
         post = Post.objects.get(pk=pk)
     except Post.DoesNotExist:
-        return HttpResponse(status=404)
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
         serializer = PostSerializer(post)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == "PUT":
-        data = JSONParser().parse(request)
-        serializer = PostSerializer(post, data=data)
+        # data = JSONParser().parse(request)
+        serializer = PostSerializer(post, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == "DELETE":
         post.delete()
-        return HttpResponse(status=204)
-
+        return Response(status=status.HTTP_204_NO_CONTENT)
