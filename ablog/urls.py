@@ -10,5 +10,9 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     # API part
-    path('api/', include('blogapi.urls'))
+    path('post-api/', include('blogapi.urls')),
+    path('accounts/', include('allauth.urls')),
+
+    path('social-auth/', include('social_django.urls', namespace='social')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

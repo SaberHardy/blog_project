@@ -1,8 +1,24 @@
 .submit-btn {
+    margin-top: 10px;
     margin-bottom: 50px;
     text-align: center;
 }
 
 a {
     text-decoration: none;
+}
+
+/* add appropriate colors to fb, twitter and google buttons */
+.fb {
+  background-color: #3664c5;
+  color: white;
+}
+
+.google {
+  background-color: #ec5846;
+  color: white;
+}
+
+.social-media-icons {
+    margin-bottom: 15px;
 }

@@ -1,10 +1,11 @@
 {% extends 'blogapp/base.html' %}
+{% load socialaccount %}
 {% block title %}
     Login
 {% endblock %}
 {% block content %}
 
-    <h1 class="form-group d-flex justify-content-center align-items-center container">Log in . . . !</h1>
+    <h1 class="form-group d-flex justify-content-center align-items-center container">Login. . . !</h1>
     <div class="form-group d-flex justify-content-center align-items-center container">
         <form method="post">
             {% csrf_token %}
@@ -16,11 +17,23 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-sm-16">
+                <div class="col-md-16">
                     <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
             </div>
+
+            <div class="col social-media-icons">
+                <a href="{% url 'social:begin' 'facebook' %}" class="fb btn">
+                    <i class="fa fa-facebook fa-fw">
+                    </i> Login with Facebook
+                </a>
+
+                <a href="{% url 'social:begin' 'google-oauth2' %}" class="google btn"><i class="fa fa-google fa-fw">
+                </i> Login with Google+
+                </a>
+            </div>
             <small>Not registered? <a href="{% url 'register' %}">Register</a></small>
+            <br/>
             <button type="submit" class="btn btn-success col-md-12 text-center submit-btn">
                 Login
             </button>
