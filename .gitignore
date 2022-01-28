@@ -5,3 +5,4 @@ token.txt
 .gitignore
 **.pyc
 media/
+settings.py
